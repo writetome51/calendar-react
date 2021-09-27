@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MonthDisplayService } from '../month-display_service/month-display.service';
-import { MonthNamesData } from '@shared/month-names.data';
-import { SelectedData } from '@app/month-and-year-controls_module/selected.data';
+import { MonthDisplayService } from '@writetome51/calendar-helpers';
+import { MonthNamesData } from '@writetome51/calendar-helpers';
+import { SelectedData } from '@writetome51/calendar-helpers';
 
 
 @Component({
@@ -39,8 +39,6 @@ export class SelectedMonthComponent {
 
 	selected = SelectedData;
 	monthNames = MonthNamesData;
-
-
-	constructor(public monthDisplay: MonthDisplayService) {}
+	monthDisplay = MonthDisplayService;
 
 }

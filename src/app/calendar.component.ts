@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CalendarContext } from '@app/calendar-context.interface';
-import { DaysOfMonthData } from '@shared/days-of-month.data';
+import { DaysOfMonthData } from '@writetome51/calendar-helpers';
 import { DayScheduleService } from '@shared/day-schedule.service';
+import { MonthDisplayService as monthDisplay } from '@writetome51/calendar-helpers';
 
 
 @Component({
@@ -14,8 +15,7 @@ import { DayScheduleService } from '@shared/day-schedule.service';
 
 			<weeks-of-month [days]="daysOfMonth.data"></weeks-of-month>
 		</div>
-	`,
-	providers: [DayScheduleService]
+	`
 })
 export class CalendarComponent implements OnInit {
 
@@ -25,7 +25,9 @@ export class CalendarComponent implements OnInit {
 	daysOfMonth = DaysOfMonthData;
 
 
-	constructor(private __daySchedule: DayScheduleService) {}
+	constructor(private __daySchedule: DayScheduleService) {
+		monthDisplay.init();
+	}
 
 
 	ngOnInit() {
