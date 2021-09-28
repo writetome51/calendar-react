@@ -1,9 +1,9 @@
-import { Appointment } from '@shared/appointment.type';
-import { DayScheduleService } from '@shared/day-schedule.service';
 import { MonthNamesData as monthNames } from '@writetome51/calendar-helpers';
 import { SelectedData as selected } from '@writetome51/calendar-helpers';
 import { TodayData as today } from '@writetome51/calendar-helpers';
 import React from 'react';
+import { DayScheduleService } from '../shared/day-schedule.service';
+import { Appointment } from '../shared/appointment.type';
 
 
 export class DayOfMonth extends React.Component<any, any>{

@@ -1,12 +1,9 @@
-import { Appointment } from '@shared/appointment.type';
-import { CalendarContextDaySchedule } from '@app/calendar-context-day-schedule.interface';
-import { Injectable } from '@angular/core';
-import { ImplementationContainer } from '@shared/implementation-container';
+import { ImplementationContainer } from './implementation-container';
+import { CalendarContextDaySchedule } from '../calendar-context-day-schedule.interface';
+import { Appointment } from './appointment.type';
 
 
-@Injectable({providedIn: 'root'})
-export class DayScheduleService
-	extends ImplementationContainer<CalendarContextDaySchedule> {
+export class DayScheduleService extends ImplementationContainer<CalendarContextDaySchedule> {
 
 	async get(
 		year: number, month: number, dayOfMonth: number

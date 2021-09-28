@@ -6,24 +6,18 @@ import React from 'react';
 import { DayOfMonth } from './DayOfMonth.component';
 
 
-export class WeeksOfMonth extends React.Component<any, any> {
+export class WeeksOfMonth extends React.Component {
 
 	weeks: DaysOfMonth[] = [];
-
-
-	set days(dys: DaysOfMonth) {
-		this.weeks = getArrFilled(
-			getRoundedUp(dys.length / 7),
-			// @ts-ignore
-			(i) => getPage(i + 1, 7, dys)
-		);
-		let last = this.weeks.length - 1;
-		this.weeks[last].push(...this.__getFillerForLastWeek(last));
-	}
+	props: { days: DaysOfMonth | undefined; } = {days: undefined};
 
 
 	render() {
-		return this.weeks.map((week) => this.renderWeek(week));
+		if (this.props.days) {
+			this.__set_weeks(this.props.days);
+
+			return this.weeks.map((week) => this.renderWeek(week));
+		}
 	}
 
 
@@ -42,6 +36,17 @@ export class WeeksOfMonth extends React.Component<any, any> {
 				<DayOfMonth number={day} />
 			</div>
 		);
+	}
+
+
+	private __set_weeks(days: DaysOfMonth){
+		this.weeks = getArrFilled(
+			getRoundedUp(days.length / 7),
+			// @ts-ignore
+			(i) => getPage(i + 1, 7, dys)
+		);
+		let last = this.weeks.length - 1;
+		this.weeks[last].push(...this.__getFillerForLastWeek(last));
 	}
 
 
