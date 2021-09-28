@@ -14,7 +14,7 @@ export class WeeksOfMonth extends React.Component {
 
 	render() {
 		if (this.props.days) {
-			this.__set_weeks(this.props.days);
+			this.weeks = this.__getSplitIntoWeeks(this.props.days);
 
 			return this.weeks.map((week) => this.renderWeek(week));
 		}
@@ -24,7 +24,7 @@ export class WeeksOfMonth extends React.Component {
 	renderWeek(week: any[]) {
 		return (
 			<div className="week-block">
-				{week.map((day) => this.renderDay(day))}
+				{week.map((day: number) => this.renderDay(day))}
 			</div>
 		);
 	}
@@ -39,14 +39,15 @@ export class WeeksOfMonth extends React.Component {
 	}
 
 
-	private __set_weeks(days: DaysOfMonth){
-		this.weeks = getArrFilled(
+	private __getSplitIntoWeeks(days: DaysOfMonth){
+		let weeks = getArrFilled(
 			getRoundedUp(days.length / 7),
 			// @ts-ignore
-			(i) => getPage(i + 1, 7, dys)
+			(i) => getPage(i + 1, 7, days)
 		);
-		let last = this.weeks.length - 1;
-		this.weeks[last].push(...this.__getFillerForLastWeek(last));
+		let last = weeks.length - 1;
+		weeks[last].push(...this.__getFillerForLastWeek(last));
+		return weeks;
 	}
 
 

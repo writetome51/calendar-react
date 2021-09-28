@@ -1,14 +1,18 @@
-import { MonthNamesData as monthNames } from '@writetome51/calendar-helpers';
-import { SelectedData as selected } from '@writetome51/calendar-helpers';
-import { TodayData as today } from '@writetome51/calendar-helpers';
+import {
+	MonthNamesData as monthNames,
+	SelectedData as selected,
+	TodayData as today
+} from '@writetome51/calendar-helpers';
 import React from 'react';
 import { DayScheduleService } from '../shared/day-schedule.service';
 import { Appointment } from '../shared/appointment.type';
 
 
-export class DayOfMonth extends React.Component<any, any>{
+export class DayOfMonth extends React.Component {
 
-	appointments: Appointment[] | undefined;
+	appointments: Appointment[] | void = undefined;
+	props: { number: number | undefined } = {number: undefined};
+	rootElementClasses = 'calendar-day day-square ';
 
 
 	constructor(private __schedule: DayScheduleService) {
@@ -17,25 +21,29 @@ export class DayOfMonth extends React.Component<any, any>{
 	}
 
 
-	async ngOnInit() { // @ts-ignore
-		this.appointments = await this.__schedule.get(
-			selected.year, this.__getMonthNumber(selected.month), Number(this.props.number)
-		);
-	}
-
-
-	render() {
+	// eslint-disable-next-line react/require-render-return
+	async render() {
+		await this.__prepareToRender();
 		return (
-			<div className="calendar-day day-square {this.isToday() ? today : ''}">
+			<div className={this.rootElementClasses}>
 				&nbsp;{this.props.number}&nbsp;
 
-				{this.appointments && this.appointments.length ? this.renderNumAppointments(): ''}
+				{this.appointments && this.appointments.length ?
+					this.__renderNumAppointments() : ''}
 			</div>
 		);
 	}
 
 
-	renderNumAppointments(){
+	private async __prepareToRender() {
+		this.appointments = await this.__schedule.get(
+			selected.year, this.__getMonthNumber(selected.month), Number(this.props.number)
+		);
+		this.rootElementClasses += (this.__isToday() ? 'today' : '');
+	}
+
+
+	private __renderNumAppointments() {
 		return (
 			<span className="num-appointments">
 				{ // @ts-ignore
@@ -46,10 +54,10 @@ export class DayOfMonth extends React.Component<any, any>{
 	}
 
 
-	isToday(): boolean {
+	private __isToday(): boolean {
 		return (
 			today.data.day === this.props.number &&
-			monthNames.data[today.data.monthIndex] === selected.month  &&
+			monthNames.data[today.data.monthIndex] === selected.month &&
 			today.data.year === selected.year
 		);
 	}

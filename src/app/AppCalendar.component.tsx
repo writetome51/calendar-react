@@ -11,8 +11,8 @@ import { MonthAndYearControls }
 
 export class AppCalendar extends React.Component {
 
-	// If left undefined, the calendar is a simple date-picker widget.
-	context: CalendarContext | undefined;
+	// If context is left undefined, the calendar is a simple date-picker widget.
+	props: {context: CalendarContext | undefined} = {context: undefined};
 
 	daysOfMonth = DaysOfMonthData;
 
@@ -26,18 +26,14 @@ export class AppCalendar extends React.Component {
 	}
 
 
-	ngOnInit() {
-		if (this.context) this.__daySchedule.setImplementation(this.context.daySchedule);
-	}
-
-
 	render() {
+		if (this.props.context) this.__daySchedule.setImplementation(
+			this.props.context.daySchedule
+		);
 		return (
 			<div id="cal-boundary">
 				<MonthAndYearControls />
-
 				<DayNames />
-
 				<WeeksOfMonth days={this.daysOfMonth.data} />
 			</div>
 		);
