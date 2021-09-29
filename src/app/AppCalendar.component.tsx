@@ -1,7 +1,7 @@
 import React from 'react';
 import { DaysOfMonthData, MonthDisplayService as monthDisplay }
 	from '@writetome51/calendar-helpers';
-import { WeeksOfMonth } from './weeks-of-month_module/WeeksOfMonth.component';
+import { WeeksOfMonth } from './WeeksOfMonth_component/WeeksOfMonth.component';
 import { DayNames } from './DayNames.component';
 import { DayScheduleService } from './shared/day-schedule.service';
 import { CalendarContext } from './calendar-context.interface';

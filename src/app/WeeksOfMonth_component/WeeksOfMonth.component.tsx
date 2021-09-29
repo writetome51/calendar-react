@@ -9,37 +9,39 @@ import { DayOfMonth } from './DayOfMonth.component';
 export class WeeksOfMonth extends React.Component {
 
 	weeks: DaysOfMonth[] = [];
-	props: { days: DaysOfMonth | undefined; } = {days: undefined};
+	props: { days: DaysOfMonth | undefined } = {days: undefined};
 
 
 	render() {
-		if (this.props.days) {
-			this.weeks = this.__getSplitIntoWeeks(this.props.days);
-
-			return this.weeks.map((week) => this.renderWeek(week));
-		}
+		this.__prepareToRender();
+		return this.weeks.map((week) => this.__renderWeek(week));
 	}
 
 
-	renderWeek(week: any[]) {
+	private __prepareToRender() {
+		if (this.props.days) this.weeks = this.__getSplitIntoWeeks(this.props.days);
+	}
+
+
+	private __renderWeek(week: any[]) {
 		return (
 			<div className="week-block">
-				{week.map((day: number) => this.renderDay(day))}
+				{week.map((day: number) => this.__renderDay(day))}
 			</div>
 		);
 	}
 
 
-	renderDay(day: number) {
+	private __renderDay(day: number) {
 		return (
 			<div className="day-column">
-				<DayOfMonth number={day} />
+				<DayOfMonth number={day}/>
 			</div>
 		);
 	}
 
 
-	private __getSplitIntoWeeks(days: DaysOfMonth){
+	private __getSplitIntoWeeks(days: DaysOfMonth) {
 		let weeks = getArrFilled(
 			getRoundedUp(days.length / 7),
 			// @ts-ignore
