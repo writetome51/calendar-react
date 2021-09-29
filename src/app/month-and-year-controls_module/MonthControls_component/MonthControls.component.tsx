@@ -1,4 +1,7 @@
 import React from 'react';
+import { BackOneMonthButton } from './BackOneMonthButton.component';
+import { ForwardOneMonthButton } from './ForwardOneMonthButton.component';
+import { SelectedMonth } from './SelectedMonth.component';
 
 
 export class MonthControls extends React.Component {
@@ -9,11 +12,11 @@ export class MonthControls extends React.Component {
 				 style={{marginTop: 0, marginRight: '5px'}}
 			>
 				<div className="left-and-right-arrow-buttons-container" style={{marginRight:'5px'}}>
-					<back-one-month-button className="control-button" />
-					<forward-one-month-button className="control-button" />
+					<BackOneMonthButton className="control-button" />
+					<ForwardOneMonthButton className="control-button" />
 				</div>
 
-				<selected-month />
+				<SelectedMonth />
 			</div>
 		);
 	}

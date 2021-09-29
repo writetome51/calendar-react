@@ -1,4 +1,5 @@
-import { ClickExecuteRapidRepeatFunctionContext } from './click-execute-rapid-repeat-function-context.interface';
+import { ClickExecuteRapidRepeatFunctionContext }
+	from './click-execute-rapid-repeat-function-context.interface';
 import { not } from '@writetome51/not';
 import React from 'react';
 import { ReactComponent } from '*.svg';
