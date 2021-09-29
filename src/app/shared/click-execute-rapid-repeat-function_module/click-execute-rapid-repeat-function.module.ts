@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ClickExecuteRapidRepeatFunctionComponent }
-	from './click-execute-rapid-repeat-function.component';
+import { ClickExecuteRapidRepeatFunction }
+	from './ClickExecuteRapidRepeatFunction.component';
 
 
 @NgModule({
-	declarations: [ClickExecuteRapidRepeatFunctionComponent],
+	declarations: [ClickExecuteRapidRepeatFunction],
 	imports: [CommonModule],
-	exports: [ClickExecuteRapidRepeatFunctionComponent]
+	exports: [ClickExecuteRapidRepeatFunction]
 })
 export class ClickExecuteRapidRepeatFunctionModule {}

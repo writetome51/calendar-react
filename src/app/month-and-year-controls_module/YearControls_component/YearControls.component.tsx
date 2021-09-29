@@ -1,4 +1,5 @@
 import React from 'react';
+import { SelectedYear } from './SelectedYear.component';
 
 
 export class YearControls extends React.Component {
@@ -7,7 +8,7 @@ export class YearControls extends React.Component {
 		return (
 			<div id="year-controls" className="controls-container">
 
-				<selected-year></selected-year>
+				<SelectedYear />
 
 				<div className="left-and-right-arrow-buttons-container"
 					 style={{marginLeft:'5px', height:'100%'}}
