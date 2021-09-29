@@ -7,17 +7,17 @@ import { ClickExecuteRapidRepeatFunction }
 
 export class RapidRepeatMatIconButton extends React.Component {
 
-	props: { context: ClickExecuteRapidRepeatFunctionContext } =
+	props: { context: ClickExecuteRapidRepeatFunctionContext; [prop: string]: any } =
 		{context: {function: () => undefined}};
 
 
 	render() {
 		return (
 			<ClickExecuteRapidRepeatFunction context={this.props.context}>
-				<button mat-icon-button onKeyDown.enter={this.props.context.function}>
-					<mat-icon>
-						<ng-content></ng-content>
-					</mat-icon>
+				<button className="mdc-icon-button material-icons"
+					onKeyDown.enter={this.props.context.function}
+				>
+					{this.props.inner}
 				</button>
 			</ClickExecuteRapidRepeatFunction>
 		);

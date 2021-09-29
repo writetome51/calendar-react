@@ -2,12 +2,11 @@ import { ClickExecuteRapidRepeatFunctionContext }
 	from './click-execute-rapid-repeat-function-context.interface';
 import { not } from '@writetome51/not';
 import React from 'react';
-import { ReactComponent } from '*.svg';
 
 
 export class ClickExecuteRapidRepeatFunction extends React.Component {
 
-	props: { context: ClickExecuteRapidRepeatFunctionContext } =
+	props: { context: ClickExecuteRapidRepeatFunctionContext; [prop: string]: any } =
 		{context: {function: () => undefined}};
 
 	private readonly __defaultInitialDelayBeforeRapid = 500; // ms
@@ -24,7 +23,7 @@ export class ClickExecuteRapidRepeatFunction extends React.Component {
 				 onMouseDown={this.start} onMouseUp={this.stop}
 				 onTouchStart={this.start} onTouchEnd={this.stop}
 			>
-				<ReactComponent/>
+				{this.props.inner}
 			</div>
 		);
 	}
