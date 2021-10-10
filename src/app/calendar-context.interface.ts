@@ -1,4 +1,4 @@
-import { CalendarContextDaySchedule } from '@app/calendar-context-day-schedule.interface';
+import { CalendarContextDaySchedule } from './calendar-context-day-schedule.interface';
 
 
 export interface CalendarContext {
