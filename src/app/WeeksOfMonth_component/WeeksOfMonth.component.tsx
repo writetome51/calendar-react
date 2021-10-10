@@ -14,7 +14,7 @@ export class WeeksOfMonth extends React.Component {
 
 	render() {
 		this.__prepareToRender();
-		return this.weeks.map((week) => this.__renderWeek(week));
+		return this.weeks.map((week, index) => this.__renderWeek(week, `week${index}`));
 	}
 
 
@@ -23,18 +23,18 @@ export class WeeksOfMonth extends React.Component {
 	}
 
 
-	private __renderWeek(week: any[]) {
+	private __renderWeek(week: any[], key: string) {
 		return (
-			<div className="week-block">
-				{week.map((day: number) => this.__renderDay(day))}
+			<div className="week-block" key={key}>
+				{week.map((day: number) => this.__renderDay(day, `${key}day${day}`))}
 			</div>
 		);
 	}
 
 
-	private __renderDay(day: number) {
+	private __renderDay(day: number, key: string) {
 		return (
-			<div className="day-column">
+			<div className="day-column" key={key}>
 				<DayOfMonth number={day}/>
 			</div>
 		);

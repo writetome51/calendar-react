@@ -7,13 +7,13 @@ import React from 'react';
 export class ClickExecuteRapidRepeatFunction extends React.Component {
 
 	props: { context: ClickExecuteRapidRepeatFunctionContext; [prop: string]: any } =
-		{context: {function: () => undefined}};
+		{context: {function: () => undefined, initialDelayBeforeRapid: 500, rapidDelay: 70}};
 
-	private readonly __defaultInitialDelayBeforeRapid = 500; // ms
-	private readonly __defaultRapidDelay = 70; // ms
+	private __initialDelayBeforeRapid = 500; // ms
+	private __rapidDelay = 70; // ms
 	private __clickEnded = true;
 
-	private get __context() {return this.props.context}
+	private get __context(): ClickExecuteRapidRepeatFunctionContext {return this.props.context}
 
 
 	render() {
@@ -39,12 +39,13 @@ export class ClickExecuteRapidRepeatFunction extends React.Component {
 
 		const outerInterval = setInterval(
 			() => {
-				const inner: number = setInterval(
-					() => this.__actionToRepeat(inner), this.__context.rapidDelay
+				// @ts-ignore
+				const inner = setInterval(
+					() => this.__actionToRepeat(inner), this.__rapidDelay
 				);
 				clearInterval(outerInterval);
 			},
-			this.__context.initialDelayBeforeRapid // only happens once
+			this.__initialDelayBeforeRapid // only happens once
 		);
 	}
 
@@ -55,9 +56,9 @@ export class ClickExecuteRapidRepeatFunction extends React.Component {
 
 
 	private __prepareToRender() {
-		if (not(this.__context.initialDelayBeforeRapid))
-			this.__context.initialDelayBeforeRapid = this.__defaultInitialDelayBeforeRapid;
-		if (not(this.__context.rapidDelay)) this.__context.rapidDelay = this.__defaultRapidDelay;
+		if (this.__context.initialDelayBeforeRapid)
+			this.__initialDelayBeforeRapid = this.__context.initialDelayBeforeRapid;
+		if (this.__context.rapidDelay) this.__rapidDelay = this.__context.rapidDelay;
 	}
 
 

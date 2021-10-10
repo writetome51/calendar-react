@@ -7,20 +7,28 @@ import { ClickExecuteRapidRepeatFunction }
 
 export class RapidRepeatMatIconButton extends React.Component {
 
-	props: { context: ClickExecuteRapidRepeatFunctionContext; [prop: string]: any } =
-		{context: {function: () => undefined}};
+	context: ClickExecuteRapidRepeatFunctionContext = {function: () => undefined};
+	props: { [prop: string]: any } = {};
 
 
 	render() {
+		// onKeyDown event should only trigger if key is ENTER
 		return (
-			<ClickExecuteRapidRepeatFunction context={this.props.context}>
-				<button className="mdc-icon-button material-icons"
-					onKeyDown.enter={this.props.context.function}
+			<ClickExecuteRapidRepeatFunction context={this.context}>
+				<button className="mdc-icon-button material-icons" id={this.props.id}
+					// @ts-ignore
+					onKeyDown={this.__callFuncIfEnterKey}
 				>
-					{this.props.inner}
+					{this.props.matIcon}
 				</button>
 			</ClickExecuteRapidRepeatFunction>
 		);
+	}
+
+
+	private __callFuncIfEnterKey(event: KeyboardEvent) {
+		console.log(event);
+		//	if (event.key === 'enter') this.props.context.function();
 	}
 
 }
